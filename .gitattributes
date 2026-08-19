@@ -1,0 +1,21 @@
+# 改行コードを明示的に固定する。
+# 環境によっては core.autocrlf の設定で改行が自動変換され、
+# macOS のシェルスクリプトが CRLF になって
+# 「bad interpreter: /bin/bash^M」で起動しなくなるため。
+
+# 既定はGitに判定させる
+* text=auto
+
+# macOS/Linux 用スクリプトは必ず LF
+*.command text eol=lf
+*.sh      text eol=lf
+
+# Windows 用バッチは必ず CRLF
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+
+# バイナリは変換しない
+*.png     binary
+*.ico     binary
+*.woff2   binary
+*.pdf     binary

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#05010d">
+    <title>📜 冒険者約束証明書 - DASHBOARD</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" href="icons/icon-192.png">
+    <!-- Tailwind Play CDNをローカル同梱。ネット未接続でもダッシュボードのスタイルが崩れない -->
+    <script src="vendor/tailwind/tailwind.js"></script>
+    <!-- 画面遷移とストレージの環境差を吸収する共通ランタイム -->
+    <script src="runtime.js"></script>
+    <link rel="stylesheet" href="vendor/fonts/zen-maru-gothic.css">
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: #05010d;
+            color: #ffffff;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden pb-12">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] mix-blend-screen"></div>
+        <!-- 背景画像はTailwindの任意値クラスではなくstyle属性で指定している。
+             任意値クラスで書くと、Next.jsのビルド時にCSS内の相対パスを
+             モジュールとして解決しようとして失敗するため。 -->
+        <div class="absolute inset-0 opacity-30" style="background-image:url('vendor/textures/stardust.png')"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main className="relative z-10 flex flex-col items-center justify-start min-h-screen p-4 md:p-8 max-w-4xl mx-auto space-y-8" class="relative z-10 flex flex-col items-center justify-start min-h-screen p-4 md:p-8 max-w-4xl mx-auto space-y-8">
+        
+        <!-- Header Title -->
+        <header class="text-center mt-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-950/60 border border-rose-400/30 text-rose-200 text-xs font-semibold tracking-widest uppercase mb-3 shadow-inner">
+                ✨ MY TABLET OWNER PASS ✨
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black tracking-wider bg-gradient-to-r from-rose-200 via-amber-200 to-purple-200 bg-clip-text text-transparent drop-shadow-md">
+                TABLET DIGITAL PASSPORT
+            </h1>
+            <p class="text-rose-200/70 mt-2 text-xs md:text-sm font-medium tracking-wide">
+                大人っぽくスマートに使いこなす、わたしだけのタブレット誓約カード
+            </p>
+        </header>
+
+        <!-- 👑 タブレット 契約＆誓約証明書 Card -->
+        <section id="cert-section" class="relative w-full backdrop-blur-2xl bg-gradient-to-b from-purple-950/40 via-slate-900/80 to-rose-950/50 border-2 border-amber-300/60 p-6 md:p-10 rounded-3xl shadow-[0_0_60px_rgba(212,175,55,0.2)] overflow-hidden transition-all hover:border-amber-300/90">
+            
+            <div class="absolute top-4 left-5 text-amber-300/70 text-xl font-serif">✧</div>
+            <div class="absolute top-4 right-5 text-amber-300/70 text-xl font-serif">✧</div>
+            <div class="absolute bottom-4 left-5 text-amber-300/70 text-xl font-serif">✧</div>
+            <div class="absolute bottom-4 right-5 text-amber-300/70 text-xl font-serif">✧</div>
+            
+            <div class="absolute -right-16 -bottom-16 w-72 h-72 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-16 -top-16 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center">
+                
+                <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-amber-500/20 border border-amber-300/50 text-amber-200 text-xs md:text-sm font-bold mb-4 shadow-lg">
+                    <span>👑 ファミリー公認・正規タブレットオーナー証</span>
+                </div>
+
+                <h2 class="text-2xl md:text-4xl font-extrabold tracking-widest text-transparent bg-gradient-to-r from-amber-100 via-rose-200 to-amber-200 bg-clip-text drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)] mb-1">
+                    ✨ TABLET DIGITAL PASS ✨
+                </h2>
+
+                <p class="text-xs text-amber-200/70 mb-6 tracking-widest font-mono uppercase">
+                    OFFICIAL AGREEMENT & CERTIFICATE
+                </p>
+
+                <!-- Player Name -->
+                <div class="w-full max-w-md bg-gradient-to-r from-rose-950/80 via-purple-950/90 to-rose-950/80 border border-amber-300/40 py-4 px-6 rounded-2xl mb-6 shadow-xl relative overflow-hidden group">
+                    <span class="text-xs text-rose-300/80 block font-semibold tracking-wider mb-0.5">誓約オーナー (DIGITAL OWNER)</span>
+                    <span id="player-name-display" class="text-2xl md:text-3xl font-black text-white tracking-wider drop-shadow-md">
+                        --- 様
+                    </span>
+                </div>
+
+                <!-- Promises -->
+                <div class="w-full max-w-lg bg-black/50 border border-amber-300/20 rounded-2xl p-5 md:p-6 mb-6 text-left space-y-3 shadow-inner">
+                    <div class="flex items-center justify-between border-b border-amber-300/20 pb-2 mb-3">
+                        <p class="text-xs font-bold text-amber-200 tracking-wider">
+                            💖 【 私が約束した 3つの大切なこと 】
+                        </p>
+                        <span class="text-[10px] text-rose-300/80 bg-rose-900/40 px-2 py-0.5 rounded border border-rose-400/30">AGREED</span>
+                    </div>
+                    <div id="promises-container" class="space-y-3">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Timestamp & Seal -->
+                <div class="flex flex-col sm:flex-row items-center justify-between w-full max-w-lg pt-4 border-t border-amber-300/30 gap-4 text-xs md:text-sm text-gray-300">
+                    <div class="flex items-center gap-2">
+                        <span class="text-amber-300 font-medium">✨ 同意記念日時:</span>
+                        <span id="timestamp-display" class="font-mono text-amber-100/90">---</span>
+                    </div>
+
+                    <div class="flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-amber-400/20 to-rose-400/20 rounded-xl border border-amber-300/60 text-amber-200 font-bold text-xs shadow-md">
+                        <span>💖 AGREED & SIGNED (承認済印)</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-lg pt-2">
+            <button id="celebrate-btn" class="group relative flex-1 px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:from-amber-400 hover:to-purple-500 transition-all duration-300 shadow-lg shadow-rose-500/25 overflow-hidden font-bold text-base md:text-lg text-white">
+                <span class="relative z-10 flex items-center justify-center gap-2">
+                    <span class="text-xl">🎉</span>
+                    初めての同意イベントをお祝い！
+                </span>
+            </button>
+
+            <button id="replay-btn" class="group relative flex-1 px-5 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 font-medium text-sm md:text-base text-gray-200">
+                <span class="relative z-10 flex items-center justify-center gap-2">
+                    <span>🔄</span>
+                    もう一度演出を見る
+                </span>
+            </button>
+        </div>
+
+        <button id="close-btn" class="text-xs text-rose-300/60 hover:text-rose-200 underline pt-2 transition-colors">
+            アプリを終了する
+        </button>
+
+    </main>
+
+    <!-- Celebration Modal -->
+    <div id="celebration-modal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-gradient-to-br from-purple-950 via-rose-950 to-slate-900 border-2 border-amber-300/80 rounded-3xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 relative overflow-hidden" id="celebration-card">
+            <div class="text-5xl mb-3">👑💖✨</div>
+            <h3 class="text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-amber-100 bg-clip-text text-transparent mb-2">初めての同意イベント記念日！</h3>
+            <p class="text-sm text-amber-100/90 mb-6 leading-relaxed">
+                お約束を大切にして、自分だけのタブレットを楽しくスマートにつかいこなしてね💖
+            </p>
+            <button id="close-celebration-btn" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-xl font-bold text-base shadow-lg hover:brightness-110">
+                ありがとう！証明書に戻る
+            </button>
+        </div>
+    </div>
+
+    <!-- Exit Guidance Modal -->
+    <div id="exit-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border-2 border-purple-500/50 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="exit-card">
+            <div class="text-4xl mb-3">👋✨</div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">終了します</h3>
+            <p class="text-sm text-purple-200/90 mb-6 leading-relaxed">
+                画面の右上にある <span class="inline-block px-2 py-0.5 bg-red-500/30 border border-red-400 text-red-300 rounded font-bold">✕</span> ボタンまたはタブを閉じて終了してね！
+            </p>
+            <button id="close-modal-btn" class="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-bold text-sm text-gray-200">
+                画面に戻る
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 証明書カードの描画。
+        // 単一ファイル版では画面切り替えのたびに呼び直して、
+        // 同意直後に発行された証明書を反映させる必要があるため関数として切り出している。
+        // 戻り値: 描画できたら true / 証明書が無い・壊れていたら false
+        function ssblRenderDashboard() {
+            const savedCert = SSBL.storage.get('adventureCertificate');
+            if (!savedCert) return false;
+
+            try {
+                const cert = JSON.parse(savedCert);
+                document.getElementById('player-name-display').innerHTML = cert.playerName + ' <span class="text-lg md:text-xl font-bold text-amber-300">様</span>';
+                document.getElementById('timestamp-display').textContent = cert.timestamp;
+
+                const container = document.getElementById('promises-container');
+                container.innerHTML = '';
+                (cert.promises || []).forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10 text-sm md:text-base text-gray-100 font-medium leading-relaxed';
+                    div.innerHTML = '<span class="text-amber-300 text-base mt-0.5">✦</span><span>' + p + '</span>';
+                    container.appendChild(div);
+                });
+                return true;
+            } catch (e) {
+                console.error('Failed to parse cert', e);
+                return false;
+            }
+        }
+        window.SSBL_RENDER_DASHBOARD = ssblRenderDashboard;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 単一ファイル版では、最初にどちらの画面を出すかはシェル側が決めるので
+            // ここでの自動描画・自動遷移は行わない(イベント登録だけ済ませる)。
+            if (typeof window.SSBL_SHOW_VIEW !== 'function') {
+                if (!ssblRenderDashboard()) {
+                    // 証明書未発行の場合はイントロへ
+                    SSBL.navigate('intro');
+                    return;
+                }
+            }
+
+            // Celebrate Modal
+            const celebrateBtn = document.getElementById('celebrate-btn');
+            const celebrationModal = document.getElementById('celebration-modal');
+            const celebrationCard = document.getElementById('celebration-card');
+            const closeCelebrationBtn = document.getElementById('close-celebration-btn');
+
+            if (celebrateBtn) {
+                celebrateBtn.addEventListener('click', () => {
+                    celebrationModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        celebrationModal.classList.remove('opacity-0');
+                        celebrationCard.classList.remove('scale-95');
+                        celebrationCard.classList.add('scale-100');
+                    });
+                });
+            }
+
+            if (closeCelebrationBtn) {
+                closeCelebrationBtn.addEventListener('click', () => {
+                    celebrationModal.classList.add('opacity-0');
+                    celebrationCard.classList.remove('scale-100');
+                    celebrationCard.classList.add('scale-95');
+                    setTimeout(() => {
+                        celebrationModal.classList.add('hidden');
+                    }, 300);
+                });
+            }
+
+            document.getElementById('replay-btn').addEventListener('click', () => {
+                // 準備済みフラグも消して、最初の「タップして始めよう」から見られるようにする
+                SSBL.reset();
+                SSBL.navigate('intro');
+            });
+
+            const exitModal = document.getElementById('exit-modal');
+            const exitCard = document.getElementById('exit-card');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            document.getElementById('close-btn').addEventListener('click', () => {
+                // 全画面のままだと終了案内モーダルが見づらいので、先に解除しておく
+                if (document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(() => {});
+                }
+                if (window.FullyKiosk && typeof window.FullyKiosk.closeApp === 'function') {
+                    window.FullyKiosk.closeApp();
+                    return;
+                }
+                window.close();
+                setTimeout(() => {
+                    exitModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        exitModal.classList.remove('opacity-0');
+                        exitCard.classList.remove('scale-95');
+                        exitCard.classList.add('scale-100');
+                    });
+                }, 100);
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                exitModal.classList.add('opacity-0');
+                exitCard.classList.remove('scale-100');
+                exitCard.classList.add('scale-95');
+                setTimeout(() => {
+                    exitModal.classList.add('hidden');
+                }, 300);
+            });
+        });
+    </script>
+    <script src="sw-register.js"></script>
+</body>
+</html>

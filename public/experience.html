@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="ようこそ、新しい冒険の世界へ！ — 初めてのタブレットのお祝い">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="タブレット同意証">
+    <meta name="theme-color" content="#0a0a2e">
+    <title>✨ ようこそ！冒険のはじまり</title>
+    <!-- Webアプリの基本情報(名前・アイコン・テーマ色)を定義するマニフェスト。
+         なお、content:// で開いた場合はブラウザ側がマニフェストを適用しないため、
+         アドレスバーは表示されたままになる。 -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" href="icons/icon-192.png">
+    <!-- 完全ローカル同梱フォント。ネット未接続の開封直後でも文字が正しく描画される -->
+    <link rel="stylesheet" href="vendor/fonts/zen-maru-gothic.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-orbit-ring">
+                <div class="orbit-dot dot-1"></div>
+                <div class="orbit-dot dot-2"></div>
+                <div class="orbit-dot dot-3"></div>
+            </div>
+            <div class="loading-star" id="loadingStar">✦</div>
+            <p class="loading-text" id="loadingText">宇宙を準備しています...</p>
+        </div>
+    </div>
+
+    <!-- Player Select Modal -->
+    <div id="player-select-modal" class="modal-overlay hidden">
+        <div class="modal-card player-card">
+            <div class="modal-icon">👑💎</div>
+            <h2 class="modal-title">オーナーを選んでね</h2>
+            <p class="modal-desc">だれのタブレット契約・証明書を作成しますか？</p>
+            <div id="player-select-buttons" class="player-select-buttons">
+                <!-- Dynamically populated from config.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Babylon.js Canvas -->
+    <canvas id="renderCanvas" touch-action="none"></canvas>
+
+    <!-- Overlay UI for messages & button -->
+    <div id="overlay">
+        <div id="message-container"></div>
+        <button id="start-button" class="hidden" aria-label="約束に同意してタブレットをスタート！">
+            <span class="btn-glow"></span>
+            <span class="btn-text">✨ 約束に同意してタブレットをスタート！</span>
+            <span class="btn-sparkle sparkle-1">✦</span>
+            <span class="btn-sparkle sparkle-2">✧</span>
+            <span class="btn-sparkle sparkle-3">✦</span>
+        </button>
+        <button id="replay-button" class="hidden" aria-label="もう一度見る" style="margin-top: 20px;">
+            <span class="btn-glow" style="background: linear-gradient(90deg, #b76e79, #d4af37, #b76e79);"></span>
+            <span class="btn-text">もう一度演出を見る</span>
+            <span class="btn-sparkle sparkle-1">✦</span>
+            <span class="btn-sparkle sparkle-2">✧</span>
+            <span class="btn-sparkle sparkle-3">✦</span>
+        </button>
+    </div>
+
+    <!-- Confirm Modal (First Digital Agreement Event) -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-card elegant-card">
+            <div class="modal-icon">👑✨</div>
+            <h2 class="modal-title">First Agreement Event</h2>
+            <p class="modal-subtitle">〜 タブレット使用に関する 3つの大切な約束 〜</p>
+            
+            <div id="modal-promises-list" class="modal-promises-box">
+                <!-- Javascript dynamically loads promises -->
+            </div>
+
+            <div class="agreement-notice">
+                <span>✦ このボタンを押すことで「初めてのタブレット同意イベント」として記憶・記録されます ✦</span>
+            </div>
+
+            <div class="modal-buttons">
+                <button id="modal-yes-button" class="modal-btn yes-btn elegant-yes">
+                    <span id="agree-btn-text">💖 約束を守って同意する</span>
+                </button>
+                <button id="modal-no-button" class="modal-btn no-btn">
+                    <span>もう一度確認する</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Babylon.js をローカル同梱(vendor)。CDN未接続でも宇宙演出が動く -->
+    <script src="vendor/babylonjs/babylon.js"></script>
+    <!-- 画面遷移とストレージの環境差を吸収する共通ランタイム(app.jsより前に読む) -->
+    <script src="runtime.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+    <script src="sw-register.js"></script>
+</body>
+</html>

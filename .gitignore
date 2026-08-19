@@ -1,0 +1,49 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# 個人的な執筆用ワークスペース(同人誌の原稿・PDF・個人のエディタ設定)
+# コードリポジトリと性質が異なるため、Git管理の対象外にしています。
+# ファイル自体はこのPC上にそのまま残ります。
+/docs/book/
+
+# 動作しない古いローカル専用スクリプト(パスが別リポジトリ向けのまま)
+/capture_direct_intro.js

@@ -1,0 +1,19 @@
+{
+  "name": "Small Step, Big Leap — タブレット同意＆デジタルオーナー証",
+  "short_name": "タブレット同意証",
+  "description": "初めてのタブレットを受け取る瞬間を、宇宙演出とオーナー証で祝う体験型セレブレーションアプリ",
+  "start_url": "./experience.html",
+  "scope": "./",
+  "id": "./experience.html",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#05010d",
+  "theme_color": "#0a0a2e",
+  "lang": "ja",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
