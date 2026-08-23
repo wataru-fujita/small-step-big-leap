@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* ----- Ruby (ふりがな) ----- */
+ruby { ruby-position: over; }
+rt { font-size: 0.5em; font-weight: 400; opacity: 0.85; user-select: none; -webkit-user-select: none; }
+
 /* standalone/ は tools/build-standalone.js が生成する単一HTMLファイル(約8.5MB)。
    Tailwind本体を丸ごと埋め込んでいるため、これをクラス探索の対象にすると
    ビルドが遅くなるうえ、コード中の文字列を誤ってクラス名として拾ってしまう。 */

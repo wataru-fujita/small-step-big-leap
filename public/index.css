@@ -3,6 +3,18 @@
    タブレット初回起動の3D体験
    ============================================ */
 
+/* ----- Ruby (ふりがな) ----- */
+ruby {
+    ruby-position: over;
+}
+rt {
+    font-size: 0.5em;
+    font-weight: 400;
+    opacity: 0.85;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 /* ----- Reset & Base ----- */
 *, *::before, *::after {
     margin: 0;

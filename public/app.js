@@ -343,6 +343,16 @@ class SpaceAudio {
 //  Main Welcome Experience
 // ============================================
 class WelcomeExperience {
+    // config.js が読み込めなかった場合の既定のお約束文言。
+    // config.js 本体のデフォルト値と揃えてあり、ルビも共通化するため
+    // ここを唯一の情報源にしている(以前は同じ文言が3箇所に別々に
+    // ハードコードされており、演出中の表示だけ内容が食い違っていた)。
+    static DEFAULT_PROMISES = [
+        "✨ ① <ruby>勉強<rt>べんきょう</rt></ruby>や<ruby>調<rt>しら</rt></ruby>べもの、<ruby>自分<rt>じぶん</rt></ruby>の<ruby>成長<rt>せいちょう</rt></ruby>のためにタブレットを<ruby>活用<rt>かつよう</rt></ruby>します",
+        "💎 ② つかう<ruby>時間<rt>じかん</rt></ruby>とマナーをしっかり<ruby>守<rt>まも</rt></ruby>り、<ruby>自分自身<rt>じぶんじしん</rt></ruby>を<ruby>大切<rt>たいせつ</rt></ruby>にします",
+        "🌸 ③ <ruby>新<rt>あたら</rt></ruby>しい<ruby>発見<rt>はっけん</rt></ruby>や<ruby>素敵<rt>すてき</rt></ruby>な<ruby>体験<rt>たいけん</rt></ruby>を<ruby>楽<rt>たの</rt></ruby>しみ、<ruby>家族<rt>かぞく</rt></ruby>にもたくさんシェアします"
+    ];
+
     constructor() {
         this.canvas = document.getElementById("renderCanvas");
         this.engine = null;
@@ -499,7 +509,7 @@ class WelcomeExperience {
     _setLoadingReady() {
         const text = document.getElementById("loadingText");
         const star = document.getElementById("loadingStar");
-        text.textContent = "タップして冒険を始めよう！";
+        text.innerHTML = "タップして<ruby>冒険<rt>ぼうけん</rt></ruby>を<ruby>始<rt>はじ</rt></ruby>めよう！";
         text.classList.add("ready");
         star.style.color = "#ffd700";
 
@@ -1249,43 +1259,40 @@ class WelcomeExperience {
             .filter(Boolean)
             .join(" と ");
         const playerName = this.selectedPlayer
-            ? `${this.selectedPlayer} 冒険者`
+            ? `${this.selectedPlayer} <ruby>冒険者<rt>ぼうけんしゃ</rt></ruby>`
             : (configuredNames || "ようこそ");
+        // お約束の文言は config.js の設定から組み立てる。
+        // (以前はここだけ別の固定文言を直接書いていたため、演出中に見せる約束と
+        //  実際に同意するモーダル・証明書に記載される約束の文言が食い違っていた)
+        const scenePromises =
+            (window.APP_CONFIG && window.APP_CONFIG.promises) ||
+            WelcomeExperience.DEFAULT_PROMISES;
+        const promiseDelays = [4600, 5800, 7000];
         const messages = [
             { text: playerName, cls: "name-line", delay: 0 },
-            { text: "ようこそ、新しい世界へ", cls: "hero", delay: 1000 },
+            { text: "ようこそ、<ruby>新<rt>あたら</rt></ruby>しい<ruby>世界<rt>せかい</rt></ruby>へ", cls: "hero", delay: 1000 },
             {
-                text: "自分だけの特別なタブレットライフがはじまります！",
+                text: "<ruby>自分<rt>じぶん</rt></ruby>だけの<ruby>特別<rt>とくべつ</rt></ruby>なタブレットライフがはじまります！",
                 cls: "sub",
                 delay: 2200,
             },
             {
-                text: "✨ 〜 スマートにつかう 3つの誓い 〜",
+                text: "✨ 〜 スマートにつかう 3つの<ruby>誓<rt>ちか</rt></ruby>い 〜",
                 cls: "sub promise-title",
                 delay: 3400,
             },
-            {
-                text: "✨ ① 勉強や学び、自分の成長のために活用します",
+            ...scenePromises.slice(0, 3).map((text, i) => ({
+                text,
                 cls: "sub promise-line",
-                delay: 4600,
-            },
-            {
-                text: "💎 ② つかう時間とマナーを守り、自分を大切にします",
-                cls: "sub promise-line",
-                delay: 5800,
-            },
-            {
-                text: "🌸 ③ 新しい発見を楽しみ、家族ともシェアします",
-                cls: "sub promise-line",
-                delay: 7000,
-            },
+                delay: promiseDelays[i] ?? 4600 + i * 1200,
+            })),
         ];
 
         // Create message lines
         messages.forEach((m) => {
             const div = document.createElement("div");
             div.className = `message-line ${m.cls}`;
-            div.textContent = m.text;
+            div.innerHTML = m.text;
             container.appendChild(div);
         });
 
@@ -1327,11 +1334,7 @@ class WelcomeExperience {
 
                 // Populate promises list
                 if (promisesBox) {
-                    const promises = (window.APP_CONFIG && window.APP_CONFIG.promises) || [
-                        "✨ ① 勉強や調べもの、自分の成長のためにスマートに活用します",
-                        "💎 ② つかう時間とマナーをしっかり守り、自分自身を大切にします",
-                        "🌸 ③ 新しい発見や素敵な体験を楽しみ、家族にもたくさんシェアします"
-                    ];
+                    const promises = (window.APP_CONFIG && window.APP_CONFIG.promises) || WelcomeExperience.DEFAULT_PROMISES;
                     promisesBox.innerHTML = promises.map((p, i) => `
                         <div class="promise-item-card">
                             <span class="promise-icon">✦</span>
@@ -1366,12 +1369,7 @@ class WelcomeExperience {
                 try {
                     const now = new Date();
                     const formattedDate = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-                    const defaultPromises = [
-                        "✨ ① 勉強や調べもの、自分の成長のためにスマートに活用します",
-                        "💎 ② つかう時間とマナーをしっかり守り、自分自身を大切にします",
-                        "🌸 ③ 新しい発見や素敵な体験を楽しみ、家族にもたくさんシェアします"
-                    ];
-                    const certPromises = (window.APP_CONFIG && window.APP_CONFIG.promises) || defaultPromises;
+                    const certPromises = (window.APP_CONFIG && window.APP_CONFIG.promises) || WelcomeExperience.DEFAULT_PROMISES;
                     const certData = {
                         playerName: this.selectedPlayer || "",
                         timestamp: formattedDate,
@@ -1411,12 +1409,12 @@ class WelcomeExperience {
 
                 const completionText = document.createElement("div");
                 completionText.className = "completion-text";
-                completionText.innerHTML = "✨ 初めてのタブレット契約・同意おめでとう！ ✨<br><span style='font-size: 0.7em; font-weight: normal; color: #f3e5ab;'>タブレット・正規オーナー証明書が発行されました 👑</span>";
+                completionText.innerHTML = "✨ <ruby>初<rt>はじ</rt></ruby>めてのタブレット<ruby>契約<rt>けいやく</rt></ruby>・<ruby>同意<rt>どうい</rt></ruby>おめでとう！ ✨<br><span style='font-size: 0.7em; font-weight: normal; color: #f3e5ab;'>タブレット・<ruby>正規<rt>せいき</rt></ruby>オーナー<ruby>証明書<rt>しょうめいしょ</rt></ruby>が<ruby>発行<rt>はっこう</rt></ruby>されました 👑</span>";
                 completion.appendChild(completionText);
 
                 const hintText = document.createElement("div");
                 hintText.className = "completion-hint";
-                hintText.textContent = "💖 画面をタップしてデジタル証明カードを開く";
+                hintText.innerHTML = "💖 <ruby>画面<rt>がめん</rt></ruby>をタップしてデジタル<ruby>証明<rt>しょうめい</rt></ruby>カードを<ruby>開<rt>ひら</rt></ruby>く";
                 completion.appendChild(hintText);
 
                 const timerBar = document.createElement("div");

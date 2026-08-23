@@ -112,9 +112,9 @@ export default function Dashboard() {
             <div className="bg-gradient-to-r from-purple-900/90 via-rose-900/90 to-amber-950/90 border-2 border-amber-300/80 rounded-3xl p-6 text-center shadow-2xl transform scale-105">
               <div className="text-5xl mb-2">👑💖✨</div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-amber-100 bg-clip-text text-transparent">
-                初めての同意イベント記念日！
+                <ruby>初<rt>はじ</rt></ruby>めての<ruby>同意<rt>どうい</rt></ruby>イベント<ruby>記念日<rt>きねんび</rt></ruby>！
               </h3>
-              <p className="text-amber-100/90 text-sm mt-1">大切な約束を守って、素敵なタブレットライフを楽しもう✨</p>
+              <p className="text-amber-100/90 text-sm mt-1">お<ruby>約束<rt>やくそく</rt></ruby>を<ruby>大切<rt>たいせつ</rt></ruby>にして、<ruby>素敵<rt>すてき</rt></ruby>なタブレットライフを<ruby>楽<rt>たの</rt></ruby>しもう✨</p>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function Dashboard() {
             TABLET DIGITAL PASSPORT
           </h1>
           <p className="text-rose-200/70 mt-2 text-xs md:text-sm font-medium tracking-wide">
-            大人っぽくスマートに使いこなす、わたしだけのタブレット誓約カード
+            <ruby>大人<rt>おとな</rt></ruby>っぽくスマートに<ruby>使<rt>つか</rt></ruby>いこなす、わたしだけのタブレット<ruby>誓約<rt>せいやく</rt></ruby>カード
           </p>
         </header>
 
@@ -167,7 +167,7 @@ export default function Dashboard() {
               
               {/* Badge & Official Emblem */}
               <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-amber-500/20 border border-amber-300/50 text-amber-200 text-xs md:text-sm font-bold mb-4 shadow-lg">
-                <span>👑 ファミリー公認・正規タブレットオーナー証</span>
+                <span>👑 ファミリー<ruby>公認<rt>こうにん</rt></ruby>・<ruby>正規<rt>せいき</rt></ruby>タブレットオーナー<ruby>証<rt>しょう</rt></ruby></span>
               </div>
 
               <h2 className="text-2xl md:text-4xl font-extrabold tracking-widest text-transparent bg-gradient-to-r from-amber-100 via-rose-200 to-amber-200 bg-clip-text drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)] mb-1">
@@ -181,9 +181,9 @@ export default function Dashboard() {
               {/* Player Name Banner */}
               <div className="w-full max-w-md bg-gradient-to-r from-rose-950/80 via-purple-950/90 to-rose-950/80 border border-amber-300/40 py-4 px-6 rounded-2xl mb-6 shadow-xl relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <span className="text-xs text-rose-300/80 block font-semibold tracking-wider mb-0.5">誓約オーナー (DIGITAL OWNER)</span>
+                <span className="text-xs text-rose-300/80 block font-semibold tracking-wider mb-0.5"><ruby>誓約<rt>せいやく</rt></ruby>オーナー (DIGITAL OWNER)</span>
                 <span className="text-2xl md:text-3xl font-black text-white tracking-wider drop-shadow-md">
-                  {certificate.playerName} <span className="text-lg md:text-xl font-bold text-amber-300">様</span>
+                  {certificate.playerName} <span className="text-lg md:text-xl font-bold text-amber-300"><ruby>様<rt>さま</rt></ruby></span>
                 </span>
               </div>
 
@@ -191,14 +191,14 @@ export default function Dashboard() {
               <div className="w-full max-w-lg bg-black/50 border border-amber-300/20 rounded-2xl p-5 md:p-6 mb-6 text-left space-y-3 shadow-inner">
                 <div className="flex items-center justify-between border-b border-amber-300/20 pb-2 mb-3">
                   <p className="text-xs font-bold text-amber-200 tracking-wider">
-                    💖 【 私が約束した 3つの大切なこと 】
+                    💖 【 <ruby>私<rt>わたし</rt></ruby>が<ruby>約束<rt>やくそく</rt></ruby>した 3つの<ruby>大切<rt>たいせつ</rt></ruby>なこと 】
                   </p>
                   <span className="text-[10px] text-rose-300/80 bg-rose-900/40 px-2 py-0.5 rounded border border-rose-400/30">AGREED</span>
                 </div>
                 {certificate.promises.map((promise, idx) => (
                   <div key={idx} className="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10 text-sm md:text-base text-gray-100 font-medium leading-relaxed">
                     <span className="text-amber-300 text-base mt-0.5">✦</span>
-                    <span>{promise}</span>
+                    <span dangerouslySetInnerHTML={{ __html: promise }} />
                   </div>
                 ))}
               </div>
@@ -206,13 +206,13 @@ export default function Dashboard() {
               {/* Timestamp & Stamp Seal */}
               <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-lg pt-4 border-t border-amber-300/30 gap-4 text-xs md:text-sm text-gray-300">
                 <div className="flex items-center gap-2">
-                  <span className="text-amber-300 font-medium">✨ 同意記念日時:</span>
+                  <span className="text-amber-300 font-medium">✨ <ruby>同意<rt>どうい</rt></ruby><ruby>記念<rt>きねん</rt></ruby><ruby>日時<rt>にちじ</rt></ruby>:</span>
                   <span className="font-mono text-amber-100/90">{certificate.timestamp}</span>
                 </div>
 
                 {/* Gold Seal Emblem */}
                 <div className="flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-amber-400/20 to-rose-400/20 rounded-xl border border-amber-300/60 text-amber-200 font-bold text-xs shadow-md">
-                  <span>💖 AGREED & SIGNED (承認済印)</span>
+                  <span>💖 AGREED & SIGNED (<ruby>承認<rt>しょうにん</rt></ruby><ruby>済<rt>ず</rt></ruby><ruby>印<rt>いん</rt></ruby>)</span>
                 </div>
               </div>
 
@@ -229,7 +229,7 @@ export default function Dashboard() {
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
               <span className="text-xl">🎉</span>
-              初めての同意イベントをお祝い！
+              <span><ruby>初<rt>はじ</rt></ruby>めての<ruby>同意<rt>どうい</rt></ruby>イベントをお<ruby>祝<rt>いわ</rt></ruby>い！</span>
             </span>
             <div className="absolute inset-0 h-full w-full bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
           </button>
@@ -241,7 +241,7 @@ export default function Dashboard() {
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
               <span>🔄</span>
-              もう一度オープニングを見る
+              <span>もう<ruby>一度<rt>いちど</rt></ruby><ruby>見<rt>み</rt></ruby>る</span>
             </span>
           </button>
         </div>
@@ -251,7 +251,7 @@ export default function Dashboard() {
           onClick={handleClose}
           className="text-xs text-rose-300/60 hover:text-rose-200 underline pt-2 transition-colors"
         >
-          アプリを終了する
+          アプリをとじる
         </button>
 
       </main>
@@ -261,15 +261,15 @@ export default function Dashboard() {
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
           <div className="bg-slate-900 border-2 border-purple-500/50 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl">
             <div className="text-4xl mb-3">👋✨</div>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">終了します</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">とじます</h3>
             <p className="text-sm text-purple-200/90 mb-6 leading-relaxed">
-              画面の右上にある <span className="inline-block px-2 py-0.5 bg-red-500/30 border border-red-400 text-red-300 rounded font-bold">✕</span> ボタンまたはタブを閉じて終了してね！
+              <ruby>画面<rt>がめん</rt></ruby>の<ruby>右上<rt>みぎうえ</rt></ruby>にある <span className="inline-block px-2 py-0.5 bg-red-500/30 border border-red-400 text-red-300 rounded font-bold">✕</span> ボタンまたはタブをとじてね！
             </p>
             <button
               onClick={() => setShowExitModal(false)}
               className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-bold text-sm text-gray-200"
             >
-              画面に戻る
+              <ruby>画面<rt>がめん</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る
             </button>
           </div>
         </div>

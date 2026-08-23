@@ -24,6 +24,8 @@
             user-select: none;
             -webkit-user-select: none;
         }
+        ruby { ruby-position: over; }
+        rt { font-size: 0.5em; font-weight: 400; opacity: 0.85; user-select: none; -webkit-user-select: none; }
     </style>
 </head>
 <body class="relative min-h-screen overflow-x-hidden pb-12">
@@ -50,7 +52,7 @@
                 TABLET DIGITAL PASSPORT
             </h1>
             <p class="text-rose-200/70 mt-2 text-xs md:text-sm font-medium tracking-wide">
-                大人っぽくスマートに使いこなす、わたしだけのタブレット誓約カード
+                <ruby>大人<rt>おとな</rt></ruby>っぽくスマートに<ruby>使<rt>つか</rt></ruby>いこなす、わたしだけのタブレット<ruby>誓約<rt>せいやく</rt></ruby>カード
             </p>
         </header>
 
@@ -68,7 +70,7 @@
             <div class="relative z-10 flex flex-col items-center text-center">
                 
                 <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-amber-500/20 border border-amber-300/50 text-amber-200 text-xs md:text-sm font-bold mb-4 shadow-lg">
-                    <span>👑 ファミリー公認・正規タブレットオーナー証</span>
+                    <span>👑 ファミリー<ruby>公認<rt>こうにん</rt></ruby>・<ruby>正規<rt>せいき</rt></ruby>タブレットオーナー<ruby>証<rt>しょう</rt></ruby></span>
                 </div>
 
                 <h2 class="text-2xl md:text-4xl font-extrabold tracking-widest text-transparent bg-gradient-to-r from-amber-100 via-rose-200 to-amber-200 bg-clip-text drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)] mb-1">
@@ -81,7 +83,7 @@
 
                 <!-- Player Name -->
                 <div class="w-full max-w-md bg-gradient-to-r from-rose-950/80 via-purple-950/90 to-rose-950/80 border border-amber-300/40 py-4 px-6 rounded-2xl mb-6 shadow-xl relative overflow-hidden group">
-                    <span class="text-xs text-rose-300/80 block font-semibold tracking-wider mb-0.5">誓約オーナー (DIGITAL OWNER)</span>
+                    <span class="text-xs text-rose-300/80 block font-semibold tracking-wider mb-0.5"><ruby>誓約<rt>せいやく</rt></ruby>オーナー (DIGITAL OWNER)</span>
                     <span id="player-name-display" class="text-2xl md:text-3xl font-black text-white tracking-wider drop-shadow-md">
                         --- 様
                     </span>
@@ -91,7 +93,7 @@
                 <div class="w-full max-w-lg bg-black/50 border border-amber-300/20 rounded-2xl p-5 md:p-6 mb-6 text-left space-y-3 shadow-inner">
                     <div class="flex items-center justify-between border-b border-amber-300/20 pb-2 mb-3">
                         <p class="text-xs font-bold text-amber-200 tracking-wider">
-                            💖 【 私が約束した 3つの大切なこと 】
+                            💖 【 <ruby>私<rt>わたし</rt></ruby>が<ruby>約束<rt>やくそく</rt></ruby>した 3つの<ruby>大切<rt>たいせつ</rt></ruby>なこと 】
                         </p>
                         <span class="text-[10px] text-rose-300/80 bg-rose-900/40 px-2 py-0.5 rounded border border-rose-400/30">AGREED</span>
                     </div>
@@ -103,12 +105,12 @@
                 <!-- Timestamp & Seal -->
                 <div class="flex flex-col sm:flex-row items-center justify-between w-full max-w-lg pt-4 border-t border-amber-300/30 gap-4 text-xs md:text-sm text-gray-300">
                     <div class="flex items-center gap-2">
-                        <span class="text-amber-300 font-medium">✨ 同意記念日時:</span>
+                        <span class="text-amber-300 font-medium">✨ <ruby>同意<rt>どうい</rt></ruby><ruby>記念<rt>きねん</rt></ruby><ruby>日時<rt>にちじ</rt></ruby>:</span>
                         <span id="timestamp-display" class="font-mono text-amber-100/90">---</span>
                     </div>
 
                     <div class="flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-amber-400/20 to-rose-400/20 rounded-xl border border-amber-300/60 text-amber-200 font-bold text-xs shadow-md">
-                        <span>💖 AGREED & SIGNED (承認済印)</span>
+                        <span>💖 AGREED & SIGNED (<ruby>承認<rt>しょうにん</rt></ruby><ruby>済<rt>ず</rt></ruby><ruby>印<rt>いん</rt></ruby>)</span>
                     </div>
                 </div>
 
@@ -120,20 +122,20 @@
             <button id="celebrate-btn" class="group relative flex-1 px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:from-amber-400 hover:to-purple-500 transition-all duration-300 shadow-lg shadow-rose-500/25 overflow-hidden font-bold text-base md:text-lg text-white">
                 <span class="relative z-10 flex items-center justify-center gap-2">
                     <span class="text-xl">🎉</span>
-                    初めての同意イベントをお祝い！
+                    <span><ruby>初<rt>はじ</rt></ruby>めての<ruby>同意<rt>どうい</rt></ruby>イベントをお<ruby>祝<rt>いわ</rt></ruby>い！</span>
                 </span>
             </button>
 
             <button id="replay-btn" class="group relative flex-1 px-5 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 font-medium text-sm md:text-base text-gray-200">
                 <span class="relative z-10 flex items-center justify-center gap-2">
                     <span>🔄</span>
-                    もう一度演出を見る
+                    <span>もう<ruby>一度<rt>いちど</rt></ruby><ruby>見<rt>み</rt></ruby>る</span>
                 </span>
             </button>
         </div>
 
         <button id="close-btn" class="text-xs text-rose-300/60 hover:text-rose-200 underline pt-2 transition-colors">
-            アプリを終了する
+            アプリをとじる
         </button>
 
     </main>
@@ -142,12 +144,12 @@
     <div id="celebration-modal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-gradient-to-br from-purple-950 via-rose-950 to-slate-900 border-2 border-amber-300/80 rounded-3xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 relative overflow-hidden" id="celebration-card">
             <div class="text-5xl mb-3">👑💖✨</div>
-            <h3 class="text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-amber-100 bg-clip-text text-transparent mb-2">初めての同意イベント記念日！</h3>
+            <h3 class="text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-amber-100 bg-clip-text text-transparent mb-2"><ruby>初<rt>はじ</rt></ruby>めての<ruby>同意<rt>どうい</rt></ruby>イベント<ruby>記念日<rt>きねんび</rt></ruby>！</h3>
             <p class="text-sm text-amber-100/90 mb-6 leading-relaxed">
-                お約束を大切にして、自分だけのタブレットを楽しくスマートにつかいこなしてね💖
+                お<ruby>約束<rt>やくそく</rt></ruby>を<ruby>大切<rt>たいせつ</rt></ruby>にして、<ruby>自分<rt>じぶん</rt></ruby>だけのタブレットを<ruby>楽<rt>たの</rt></ruby>しくスマートにつかいこなしてね💖
             </p>
             <button id="close-celebration-btn" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-xl font-bold text-base shadow-lg hover:brightness-110">
-                ありがとう！証明書に戻る
+                ありがとう！<ruby>証明書<rt>しょうめいしょ</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る
             </button>
         </div>
     </div>
@@ -156,12 +158,12 @@
     <div id="exit-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-slate-900 border-2 border-purple-500/50 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="exit-card">
             <div class="text-4xl mb-3">👋✨</div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">終了します</h3>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">とじます</h3>
             <p class="text-sm text-purple-200/90 mb-6 leading-relaxed">
-                画面の右上にある <span class="inline-block px-2 py-0.5 bg-red-500/30 border border-red-400 text-red-300 rounded font-bold">✕</span> ボタンまたはタブを閉じて終了してね！
+                <ruby>画面<rt>がめん</rt></ruby>の<ruby>右上<rt>みぎうえ</rt></ruby>にある <span class="inline-block px-2 py-0.5 bg-red-500/30 border border-red-400 text-red-300 rounded font-bold">✕</span> ボタンまたはタブをとじてね！
             </p>
             <button id="close-modal-btn" class="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-bold text-sm text-gray-200">
-                画面に戻る
+                <ruby>画面<rt>がめん</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る
             </button>
         </div>
     </div>
@@ -177,7 +179,7 @@
 
             try {
                 const cert = JSON.parse(savedCert);
-                document.getElementById('player-name-display').innerHTML = cert.playerName + ' <span class="text-lg md:text-xl font-bold text-amber-300">様</span>';
+                document.getElementById('player-name-display').innerHTML = cert.playerName + ' <span class="text-lg md:text-xl font-bold text-amber-300"><ruby>様<rt>さま</rt></ruby></span>';
                 document.getElementById('timestamp-display').textContent = cert.timestamp;
 
                 const container = document.getElementById('promises-container');
